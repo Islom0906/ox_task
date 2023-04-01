@@ -1,9 +1,6 @@
 import {Col, Input, Pagination, Row, Space, Spin, Table, Tag} from 'antd';
-import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
-import {getProductFailure, getProductStart, getProductSuccess} from "../../slice/productSlice";
 import ProductService from "../../service/product";
-import login from "../../Pages/Login/Login";
 
 
 const columns = [
