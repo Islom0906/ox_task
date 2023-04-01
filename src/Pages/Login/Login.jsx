@@ -1,4 +1,4 @@
-import {Button, Checkbox, Form, Input} from "antd";
+import {Button, Checkbox, Form, Input, message} from "antd";
 import style from './login.module.scss'
 import AuthService from "../../service/auth";
 import {useNavigate} from "react-router-dom";
@@ -20,10 +20,12 @@ const Login = () => {
             localStorage.setItem('jwt', data.token)
             navigate('/')
             setLoader(false)
+            message.success('You are logged in')
         } catch (error) {
             setLoader(false)
 
-            console.log(error)
+            console.log(error.response.data.message)
+            message.error('error.response.data.message')
         }
         console.log('Success:', values);
 
