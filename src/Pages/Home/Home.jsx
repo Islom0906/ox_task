@@ -1,14 +1,13 @@
 import {
     MenuFoldOutlined,
     MenuUnfoldOutlined,
-    UploadOutlined,
-    UserOutlined,
-    VideoCameraOutlined,
+    ShoppingOutlined
 } from '@ant-design/icons';
-import {Layout, Menu, theme} from 'antd';
+import {Button, Layout, Menu, theme} from 'antd';
 import React, {useEffect, useState} from 'react';
 import style from './Home.module.scss'
-import ProductService from "../../service/product";
+import {ProductTable} from "../../components";
+import {useNavigate} from "react-router-dom";
 
 const {Header, Sider, Content} = Layout;
 const Home = () => {
@@ -16,25 +15,23 @@ const Home = () => {
     const {
         token: {colorBgContainer},
     } = theme.useToken();
+    const navigate=useNavigate()
+const logout=()=>{
+    localStorage.removeItem('jwt')
+    localStorage.removeItem('sub')
+    navigate('/login')
 
-    const getProduct = async () => {
-        try {
-            const {data} = await ProductService.getProduct()
-            console.log(data)
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
-    useEffect(() => {
-        getProduct()
-    }, [])
+}
 
     return (
         <div className={style.home}>
-            <Layout style={{height: '100vh'}}>
+            <Layout  style={{
+                minHeight: '100vh',
+            }}>
                 <Sider trigger={null} collapsed={collapsed} width={250}>
-                    <div className={style.logo}/>
+                  <Button onClick={logout} type={'link'} danger size={'large'} style={{width:'100%'}}>
+                      Log out
+                  </Button>
                     <Menu
 
                         theme="dark"
@@ -43,19 +40,10 @@ const Home = () => {
                         items={[
                             {
                                 key: '1',
-                                icon: <UserOutlined/>,
-                                label: 'nav 1',
+                                icon: <ShoppingOutlined/>,
+                                label: 'Product',
                             },
-                            {
-                                key: '2',
-                                icon: <VideoCameraOutlined/>,
-                                label: 'nav 2',
-                            },
-                            {
-                                key: '3',
-                                icon: <UploadOutlined/>,
-                                label: 'nav 3',
-                            },
+
                         ]}
                     />
                 </Sider>
@@ -77,7 +65,9 @@ const Home = () => {
                             minHeight: 280,
                         }}
                     >
-                        Content
+                        <ProductTable/>
+
+
                     </Content>
                 </Layout>
             </Layout>

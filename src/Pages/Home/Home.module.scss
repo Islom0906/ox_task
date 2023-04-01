@@ -1,6 +1,5 @@
 
 .home{
-
   .triger {
     padding: 0 24px;
     font-size: 18px;
@@ -13,9 +12,15 @@
     }
   }
 
-  .logo {
+  .logoout {
     height: 32px;
     margin: 16px;
-    background: rgba(255, 255, 255, 0.3);
+    color:white;
+  }
+  .loader{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
