@@ -25,7 +25,7 @@ const Login = () => {
             setLoader(false)
 
             console.log(error.response.data.message)
-            message.error('error.response.data.message')
+            message.error(error.response.data.message)
         }
         console.log('Success:', values);
 
