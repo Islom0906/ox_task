@@ -81,15 +81,16 @@ const ProductTable = () => {
 
 
     return (
-        <Space direction={'vertical'} size={20}>
+        <>
             <Row >
-                <Col span={24}>
-                    <Input placeholder={'Searching product'} onChange={(e)=>searchProduct(e)}/>
+                <Col span={18} style={{marginBottom:'20px'}}>
+                    <Input placeholder={'Searching product'} onChange={(e)=>searchProduct(e)} />
                 </Col>
             </Row>
-            <Spin size="large" spinning={isLoading}>
+            <Spin size="large" spinning={isLoading} style={{marginRight:'250px'}}>
                 <Table columns={columns} dataSource={isSearch ? filterData : data} rowKey={record => record.id} pagination={false} scroll={{
-                    y: 600
+                    y: 600,
+
                 }}/>
             </Spin>
 
@@ -102,7 +103,7 @@ const ProductTable = () => {
                 }}
             />
 
-        </Space>
+        </>
     );
 };
 
